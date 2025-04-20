@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accounts</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+    <h2>Your Accounts</h2>
+    <div th:if="${accounts.empty}" style="color: red;">
+        No accounts found. Create a new account below.
+    </div>
+    <table th:unless="${accounts.empty}">
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>Type</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="account : ${accounts}">
+                <td th:text="${account.accountNumber}"></td>
+                <td th:text="${account.accountType}"></td>
+                <td th:text="${account.balance}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/add-account}">Add New Account</a> |
+    <a th:href="@{/dashboard}">Back to Dashboard</a>
+</body>
+</html>

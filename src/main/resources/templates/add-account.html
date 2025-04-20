@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Account</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+    <h2>Add New Account</h2>
+    <div th:if="${error}" style="color: red;" th:text="${error}"></div>
+    <form th:action="@{/add-account}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div>
+            <label>Account Type:</label>
+            <select name="accountType" required>
+                <option value="" disabled selected>Select account type</option>
+                <option value="SAVINGS">Savings</option>
+                <option value="CHECKING">Checking</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Add Account</button>
+        </div>
+    </form>
+    <a th:href="@{/accounts}">Back to Accounts</a>
+</body>
+</html>
